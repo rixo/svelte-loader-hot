@@ -35,35 +35,6 @@ export default $2;
 `;
 	return code.replace(/(export default ([^;]*));/, replacement);
 }
-// XXX
-//
-// With `reload`, module.hot.accept will be called from inside the Proxy,
-// if and only if the reload actually succeeds. Otherwise, module.hot.decline
-// will be called instead.
-//
-// FIXME I was hoping that would trigger a full reload on failure, but that
-//   doesn't seem to work.
-//
-// function makeHot(id, code, hotOptions) {
-// 	const options = JSON.stringify(hotOptions);
-// 	const replacement = `
-// if (module.hot) {
-// 	const { configure, register, reload } = require('${posixify(hotApi)}');
-// 	if (!module.hot.data) {
-// 		// initial load
-//     module.hot.accept();
-// 		configure(${options});
-// 		$2 = register(${id}, $2);
-// 	} else {
-// 		// hot update
-// 		$2 = reload(${id}, $2, module.hot);
-// 	}
-// }
-// export default $2;
-// `;
-//
-// 	return code.replace(/(export default ([^;]*));/, replacement);
-// }
 
 function posixify(file) {
 	return file.replace(/[/\\]/g, '/');
