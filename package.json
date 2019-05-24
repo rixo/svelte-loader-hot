@@ -28,7 +28,8 @@
     "svelte": "^3.4.1"
   },
   "peerDependencies": {
-    "svelte": ">1.44.0"
+    "svelte": "3.x",
+    "webpack": "4.x"
   },
   "repository": {
     "type": "git",
