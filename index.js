@@ -24,7 +24,7 @@ const pluginOptions = {
 	markup: true
 };
 
-function makeHot(id, code, hotOptions) {
+function makeHot(id, code, hotOptions = {}) {
 	const options = JSON.stringify(hotOptions);
 	const replacement = `
 if (module.hot) {
@@ -162,7 +162,7 @@ module.exports = function(source, map) {
 		}
 
 		callback(null, js.code, js.map);
-	}, err => callback(err)).catch(err => {
+	}).catch(err => {
 		// wrap error to provide correct
 		// context when logging to console
 		callback(new Error(`${err.name}: ${err.toString()}`));
