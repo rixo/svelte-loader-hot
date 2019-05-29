@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "loader-utils": "^1.1.0",
-    "svelte-dev-helper": "github:rixo/svelte-dev-helper#hmr"
+    "svelte-dev-helper": "github:rixo/svelte-dev-helper#hmr-native"
   },
   "devDependencies": {
     "chai": "^4.1.2",
