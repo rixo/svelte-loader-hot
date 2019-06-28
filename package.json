@@ -15,8 +15,7 @@
     "webpack-loader"
   ],
   "dependencies": {
-    "loader-utils": "^1.1.0",
-    "svelte-dev-helper": "github:rixo/svelte-dev-helper#hmr"
+    "loader-utils": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -25,7 +24,8 @@
     "mocha": "^5.2.0",
     "sinon": "^6.1.5",
     "sinon-chai": "^3.2.0",
-    "svelte": "^3.4.4"
+    "svelte": "github:Axelen123/svelte#hmr",
+    "svelte-dev-helper": "github:rixo/svelte-dev-helper#hmr-inject"
   },
   "peerDependencies": {
     "svelte": "3.x",
