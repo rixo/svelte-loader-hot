@@ -15,7 +15,9 @@
     "webpack-loader"
   ],
   "dependencies": {
-    "loader-utils": "^1.1.0"
+    "loader-utils": "^1.1.0",
+    "svelte": "github:Axelen123/svelte#hmr",
+    "svelte-dev-helper": "github:rixo/svelte-dev-helper#hmr-inject"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -23,9 +25,7 @@
     "eslint-plugin-mocha": "^5.2.0",
     "mocha": "^5.2.0",
     "sinon": "^6.1.5",
-    "sinon-chai": "^3.2.0",
-    "svelte": "github:Axelen123/svelte#hmr",
-    "svelte-dev-helper": "github:rixo/svelte-dev-helper#hmr-inject"
+    "sinon-chai": "^3.2.0"
   },
   "peerDependencies": {
     "svelte": "3.x",
