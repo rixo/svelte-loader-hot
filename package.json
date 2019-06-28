@@ -16,7 +16,6 @@
   ],
   "dependencies": {
     "loader-utils": "^1.1.0",
-    "svelte": "github:Axelen123/svelte#hmr",
     "svelte-dev-helper": "github:rixo/svelte-dev-helper#hmr-inject"
   },
   "devDependencies": {
