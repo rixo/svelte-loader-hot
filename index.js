@@ -2,7 +2,7 @@ const { basename, extname, relative } = require('path');
 const { getOptions } = require('loader-utils');
 const VirtualModules = require('./lib/virtual');
 
-const hotApi = require.resolve('./lib/hot-api.js');
+const hotApi = require.resolve('./lib/hot/hot-api.js');
 
 const { version } = require('svelte/package.json');
 const major_version = +version[0];
@@ -25,27 +25,17 @@ const pluginOptions = {
 	markup: true
 };
 
-function makeHot(id, code, hotOptions) {
+const quote = JSON.stringify;
+
+function makeHot(id, code, hotOptions = {}) {
 	const options = JSON.stringify(hotOptions);
 	const replacement = `
-if (module.hot) {
-	const { configure, register, reload } = require('${posixify(hotApi)}');
-
-	module.hot.accept();
-
-	if (!module.hot.data) {
-		// initial load
-		configure(${options});
-		$2 = register(${id}, $2);
-	} else {
-		// hot update
-		$2 = reload(${id}, $2);
-	}
-}
-
-export default $2;
-`;
-
+		if (module.hot) {
+			const { applyHMR } = require('${posixify(hotApi)}');
+			$2 = applyHMR(${options}, ${quote(id)}, module.hot, $2);
+		}
+		export default $2;
+	`;
 	return code.replace(/(export default ([^;]*));/, replacement);
 }
 
@@ -106,7 +96,7 @@ module.exports = function(source, map) {
 	const virtualModules = virtualModuleInstances.get(this._compiler);
 
 	this.cacheable();
-	
+
 	const options = Object.assign({}, getOptions(this));
 	const callback = this.async();
 
