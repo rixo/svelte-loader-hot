@@ -106,7 +106,7 @@ module.exports = {
 }
 ```
 
-## SAAS/SCSS support
+## SASS/SCSS support
 
 Install npm package
 ```
