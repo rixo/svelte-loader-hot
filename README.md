@@ -105,3 +105,35 @@ module.exports = {
   ]
 }
 ```
+
+## SAAS/SCSS support
+
+Install npm package
+```
+svelte-preprocess-sass
+```
+
+At the top of `webpack.config.js` insert
+```
+var { sass } = require('svelte-preprocess-sass');
+```
+
+In `webpack.config.js` -> `module.exports` -> `module` -> `rules` (containing `test: /\.svelte$/`) -> `use` -> `options` insert
+```
+preprocess: {
+  style: sass(),
+},
+```
+
+Now, when you want to use SASS/SCSS in a `<style>` change it to `<style lang="sass">`. For example:
+```
+<style lang="sass">
+    .dupa {
+        background: orangered;
+
+        &:hover {
+            background: yellow;
+        }
+    }
+</style>
+```
