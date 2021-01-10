@@ -33,6 +33,9 @@ This plugin can be used as a drop-in replacement for `svelte-loader`. It aims to
 Configure inside your `webpack.config.js`:
 
 ```javascript
+// required for emitting css through webpack-virtual-modules plugin
+const SveltePlugin = require('svelte-loader-hot').plugin;
+
 module.exports = {
   ...
   module: {
@@ -82,12 +85,20 @@ module.exports = {
             }
           }
         }
+      },
+      {
+        // required to prevent errors from Svelte on Webpack 5+
+        test: /svelte\/.*\.mjs$/,
+        resolve: {
+          fullySpecified: false
+        }
       }
       ...
     ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new SveltePlugin(),
     ...
   ]
 }
